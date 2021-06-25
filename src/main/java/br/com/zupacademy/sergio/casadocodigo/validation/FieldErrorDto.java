@@ -1,4 +1,4 @@
-package br.com.zupacademy.sergio.casadocodigo.dto;
+package br.com.zupacademy.sergio.casadocodigo.validation;
 
 public class FieldErrorDto {
   private final String field;

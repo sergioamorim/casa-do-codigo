@@ -13,14 +13,16 @@ public class Author {
   private Long id;
 
   private String name;
-  private String email;
   private String description;
 
-  @Column(nullable = false)
+  @Column(unique = true)
+  private String email;
+
   @CreationTimestamp
+  @Column(nullable = false)
   private LocalDateTime createdOn;
 
-  @Deprecated // spring
+  @Deprecated // jpa
   public Author() { }
 
   public Author(String name, String email, String description) {

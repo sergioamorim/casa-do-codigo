@@ -1,6 +1,5 @@
-package br.com.zupacademy.sergio.casadocodigo.controller;
+package br.com.zupacademy.sergio.casadocodigo.validation;
 
-import br.com.zupacademy.sergio.casadocodigo.dto.ValidationErrorsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;

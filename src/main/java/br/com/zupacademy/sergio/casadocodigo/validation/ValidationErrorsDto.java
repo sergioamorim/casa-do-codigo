@@ -1,4 +1,4 @@
-package br.com.zupacademy.sergio.casadocodigo.dto;
+package br.com.zupacademy.sergio.casadocodigo.validation;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;

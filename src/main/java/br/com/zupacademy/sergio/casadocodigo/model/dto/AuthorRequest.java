@@ -1,4 +1,4 @@
-package br.com.zupacademy.sergio.casadocodigo.dto;
+package br.com.zupacademy.sergio.casadocodigo.model.dto;
 
 import br.com.zupacademy.sergio.casadocodigo.model.Author;
 import org.hibernate.validator.constraints.Length;
@@ -28,6 +28,10 @@ public class AuthorRequest {
 
   public Author asAuthor() {
     return new Author(this.name, this.email, this.description);
+  }
+
+  public String getEmail() {
+    return this.email;
   }
 
 }

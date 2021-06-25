@@ -1,14 +1,13 @@
 package br.com.zupacademy.sergio.casadocodigo.controller;
 
 import br.com.zupacademy.sergio.casadocodigo.repository.AuthorRepository;
-import br.com.zupacademy.sergio.casadocodigo.dto.AuthorDto;
-import br.com.zupacademy.sergio.casadocodigo.dto.AuthorRequest;
+import br.com.zupacademy.sergio.casadocodigo.model.dto.AuthorDto;
+import br.com.zupacademy.sergio.casadocodigo.model.dto.AuthorRequest;
+import br.com.zupacademy.sergio.casadocodigo.validation.DuplicateEmailAuthorRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -17,10 +16,20 @@ import javax.validation.Valid;
 public class AuthorController {
 
   private final AuthorRepository authorRepository;
+  private final DuplicateEmailAuthorRequestValidator duplicateEmailAuthorRequestValidator;
 
   @Autowired
-  public AuthorController(AuthorRepository authorRepository) {
+  public AuthorController(
+    AuthorRepository authorRepository,
+    DuplicateEmailAuthorRequestValidator duplicateEmailAuthorRequestValidator
+  ) {
     this.authorRepository = authorRepository;
+    this.duplicateEmailAuthorRequestValidator = duplicateEmailAuthorRequestValidator;
+  }
+
+  @InitBinder
+  public void initBinder(WebDataBinder webDataBinder) {
+    webDataBinder.addValidators(this.duplicateEmailAuthorRequestValidator);
   }
 
   @PostMapping
