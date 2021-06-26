@@ -15,6 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class AuthorControllerTests {
 
   private final MockMvc mockMvc;
+  private final String urlTemplate = "/authors";
 
   @Autowired
   public AuthorControllerTests(MockMvc mockMvc) {
@@ -22,11 +23,12 @@ public class AuthorControllerTests {
   }
 
   @Test
-  @DisplayName("Should return bad request when posting with empty body")
-  void shouldReturnBadRequestWhenPostingWithEmptyBody() throws Exception {
+  @DisplayName("Should return bad request with empty body when posting with empty body")
+  void shouldReturnBadRequestWithEmptyBodyWhenPostingWithEmptyBody() throws Exception {
     this.mockMvc
-      .perform(post("/authors").contentType("application/json"))
-      .andExpect(status().isBadRequest());
+      .perform(post(this.urlTemplate).contentType("application/json"))
+      .andExpect(status().isBadRequest())
+      .andExpect(content().string(""));
   }
 
   @Test
@@ -40,7 +42,7 @@ public class AuthorControllerTests {
 
     this.mockMvc
       .perform(
-        post("/authors")
+        post(this.urlTemplate)
           .contentType("application/json")
           .content(authorRequestAsJson.replace("'", "\""))
       ).andExpect(status().isBadRequest());
@@ -54,11 +56,11 @@ public class AuthorControllerTests {
         " 'name': 'author'," +
         " 'email': 'email@email.com'," +
         " 'description': 'description' " +
-      "}";
+        "}";
 
     this.mockMvc
       .perform(
-        post("/authors")
+        post(this.urlTemplate)
           .contentType("application/json")
           .content(authorRequestAsJson.replace("'", "\""))
       )
@@ -82,7 +84,7 @@ public class AuthorControllerTests {
 
     this.mockMvc
       .perform(
-        post("/authors")
+        post(this.urlTemplate)
           .contentType("application/json")
           .content(authorRequestAsJson.replace("'", "\""))
       )
@@ -120,7 +122,7 @@ public class AuthorControllerTests {
 
     this.mockMvc
       .perform(
-        post("/authors")
+        post(this.urlTemplate)
           .contentType("application/json")
           .content(authorRequestAsJson1.replace("'", "\""))
       )
@@ -128,7 +130,7 @@ public class AuthorControllerTests {
 
     this.mockMvc
       .perform(
-        post("/authors")
+        post(this.urlTemplate)
           .contentType("application/json")
           .content(authorRequestAsJson2.replace("'", "\""))
       )
@@ -136,12 +138,29 @@ public class AuthorControllerTests {
 
     this.mockMvc
       .perform(
-        post("/authors")
+        post(this.urlTemplate)
           .contentType("application/json")
           .content(authorRequestAsJson3.replace("'", "\""))
       )
       .andExpect(status().isOk());
 
+  }
+
+  @Test
+  @DisplayName("Should return bad request and a JSON with the validation problems")
+  void shouldReturnBadRequestAndAJsonWithTheValidationProblems() throws Exception {
+    String emptyObject = "{ }";
+    this.mockMvc
+      .perform(
+        post(this.urlTemplate)
+          .contentType("application/json")
+          .content(emptyObject)
+      )
+      .andExpect(status().isBadRequest())
+      .andExpect(jsonPath("globalErrors").isArray())
+      .andExpect(jsonPath("globalErrors").isEmpty())
+      .andExpect(jsonPath("fieldErrors").isArray())
+      .andExpect(jsonPath("fieldErrors").isNotEmpty());
   }
 
 }

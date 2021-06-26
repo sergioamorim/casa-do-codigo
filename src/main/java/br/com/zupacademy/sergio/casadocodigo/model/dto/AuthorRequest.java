@@ -27,7 +27,7 @@ public class AuthorRequest {
   }
 
   public Author asAuthor() {
-    return new Author(this.name, this.email, this.description);
+    return new Author(this.name, this.getEmail(), this.description);
   }
 
   public String getEmail() {

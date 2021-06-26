@@ -22,8 +22,9 @@ public class Author {
   @Column(nullable = false)
   private LocalDateTime createdOn;
 
-  @Deprecated // jpa
-  public Author() { }
+  @Deprecated  // jpa
+  public Author() {
+  }
 
   public Author(String name, String email, String description) {
     this.name = name;

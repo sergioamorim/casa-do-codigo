@@ -8,18 +8,18 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 @Component
-public class DuplicateEmailAuthorRequestValidator implements Validator {
+public class DuplicateAuthorRequestEmailValidator implements Validator {
 
   private final AuthorRepository authorRepository;
 
   @Autowired
-  public DuplicateEmailAuthorRequestValidator(AuthorRepository authorRepository) {
+  public DuplicateAuthorRequestEmailValidator(AuthorRepository authorRepository) {
     this.authorRepository = authorRepository;
   }
 
   @Override
-  public boolean supports(Class<?> clazz) {
-    return AuthorRequest.class.isAssignableFrom(clazz);
+  public boolean supports(Class<?> aClass) {
+    return AuthorRequest.class.isAssignableFrom(aClass);
   }
 
   @Override
