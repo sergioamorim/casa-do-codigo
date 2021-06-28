@@ -89,6 +89,7 @@ public class AuthorControllerTests {
           .content(authorRequestAsJson.replace("'", "\""))
       )
       .andExpect(status().isOk())
+      .andExpect(content().contentType("application/json"))
       .andExpect(jsonPath("name").value("kat"))
       .andExpect(jsonPath("email").value("kat@u.com"))
       .andExpect(jsonPath("description").value("soo"))
@@ -157,10 +158,12 @@ public class AuthorControllerTests {
           .content(emptyObject)
       )
       .andExpect(status().isBadRequest())
+      .andExpect(content().contentType("application/json"))
       .andExpect(jsonPath("globalErrors").isArray())
       .andExpect(jsonPath("globalErrors").isEmpty())
       .andExpect(jsonPath("fieldErrors").isArray())
       .andExpect(jsonPath("fieldErrors").isNotEmpty());
   }
+
 
 }

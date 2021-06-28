@@ -1,6 +1,7 @@
 package br.com.zupacademy.sergio.casadocodigo.model.dto;
 
 import br.com.zupacademy.sergio.casadocodigo.model.Author;
+import br.com.zupacademy.sergio.casadocodigo.validation.UniqueValue;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
@@ -12,8 +13,9 @@ public class AuthorRequest {
   @NotBlank
   private final String name;
 
-  @NotEmpty
   @Email
+  @NotEmpty
+  @UniqueValue(domainClass = Author.class, fieldName = "email")
   private final String email;
 
   @NotBlank

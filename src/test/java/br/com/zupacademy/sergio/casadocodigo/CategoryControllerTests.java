@@ -71,6 +71,7 @@ public class CategoryControllerTests {
           .content(categoryDtoAsJson)
       )
       .andExpect(status().isOk())
+      .andExpect(content().contentType("application/json"))
       .andExpect(jsonPath("name").value("category"));
   }
 
@@ -116,6 +117,7 @@ public class CategoryControllerTests {
           .content(emptyObject)
       )
       .andExpect(status().isBadRequest())
+      .andExpect(content().contentType("application/json"))
       .andExpect(jsonPath("globalErrors").isArray())
       .andExpect(jsonPath("globalErrors").isEmpty())
       .andExpect(jsonPath("fieldErrors").isArray())

@@ -1,17 +1,17 @@
 package br.com.zupacademy.sergio.casadocodigo.model.dto;
 
 import br.com.zupacademy.sergio.casadocodigo.model.Category;
+import br.com.zupacademy.sergio.casadocodigo.validation.UniqueValue;
+import com.fasterxml.jackson.annotation.JsonCreator;
 
 import javax.validation.constraints.NotBlank;
 
 public class CategoryDto {
   @NotBlank
-  private String name;
+  @UniqueValue(domainClass = Category.class, fieldName = "name")
+  private final String name;
 
-  @Deprecated  // jackson
-  public CategoryDto() {
-  }
-
+  @JsonCreator
   public CategoryDto(String name) {
     this.name = name;
   }
@@ -22,11 +22,6 @@ public class CategoryDto {
 
   public String getName() {
     return this.name;
-  }
-
-  @Deprecated  // jackson
-  public void setName(String name) {
-    this.name = name;
   }
 
   public Category asCategory() {

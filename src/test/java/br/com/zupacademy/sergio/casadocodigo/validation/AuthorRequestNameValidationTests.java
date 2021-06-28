@@ -4,13 +4,20 @@ import br.com.zupacademy.sergio.casadocodigo.model.dto.AuthorRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.validation.Validation;
 import javax.validation.Validator;
 
+@SpringBootTest
 public class AuthorRequestNameValidationTests {
 
-  private final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+  private final Validator validator;
+
+  @Autowired
+  public AuthorRequestNameValidationTests(Validator validator) {
+    this.validator = validator;
+  }
 
   @Test
   @DisplayName("Should not accept an empty name")
