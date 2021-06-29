@@ -1,4 +1,4 @@
-package br.com.zupacademy.sergio.casadocodigo.validation;
+package br.com.zupacademy.sergio.casadocodigo.validation.author;
 
 import br.com.zupacademy.sergio.casadocodigo.model.dto.AuthorRequest;
 import org.junit.jupiter.api.Assertions;

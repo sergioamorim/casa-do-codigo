@@ -16,8 +16,6 @@ public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Ob
 
   @Override
   public void initialize(UniqueValue params) {
-    System.out.println(this.attributeName);
-    System.out.println(entityManager);
     this.aClass = params.domainClass();
     this.attributeName = params.fieldName();
   }

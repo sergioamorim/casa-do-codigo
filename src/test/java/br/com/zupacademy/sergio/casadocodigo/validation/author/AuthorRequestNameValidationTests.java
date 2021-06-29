@@ -1,4 +1,4 @@
-package br.com.zupacademy.sergio.casadocodigo.validation;
+package br.com.zupacademy.sergio.casadocodigo.validation.author;
 
 import br.com.zupacademy.sergio.casadocodigo.model.dto.AuthorRequest;
 import org.junit.jupiter.api.Assertions;
@@ -6,10 +6,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import javax.validation.Validator;
 
+import static org.springframework.test.annotation.DirtiesContext.ClassMode.BEFORE_CLASS;
+
 @SpringBootTest
+@DirtiesContext(classMode = BEFORE_CLASS)
 public class AuthorRequestNameValidationTests {
 
   private final Validator validator;
