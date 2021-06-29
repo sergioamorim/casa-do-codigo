@@ -23,7 +23,7 @@ public class Author {
   private LocalDateTime createdOn;
 
   @Deprecated  // jpa
-  public Author() {
+  protected Author() {
   }
 
   public Author(String name, String email, String description) {

@@ -1,4 +1,4 @@
-package br.com.zupacademy.sergio.casadocodigo;
+package br.com.zupacademy.sergio.casadocodigo.controller.book;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -14,6 +14,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
+import static org.hamcrest.Matchers.hasKey;
+import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.annotation.DirtiesContext.ClassMode.BEFORE_CLASS;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -21,13 +23,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = BEFORE_CLASS)
-public class BookControllerTests {
+public class BookControllerPostTests {
 
   private final MockMvc mockMvc;
   private final String urlTemplate = "/books";
 
   @Autowired
-  public BookControllerTests(MockMvc mockMvc) {
+  public BookControllerPostTests(MockMvc mockMvc) {
     this.mockMvc = mockMvc;
   }
 
@@ -60,7 +62,32 @@ public class BookControllerTests {
       .andExpect(jsonPath("globalErrors").isArray())
       .andExpect(jsonPath("globalErrors").isEmpty())
       .andExpect(jsonPath("fieldErrors").isArray())
-      .andExpect(jsonPath("fieldErrors").isNotEmpty());
+      .andExpect(jsonPath("fieldErrors").isNotEmpty())
+      .andExpect(jsonPath("fieldErrors", hasSize(8)))
+      .andExpect(jsonPath("fieldErrors[0].*", hasSize(2)))
+      .andExpect(jsonPath("fieldErrors[0]", hasKey("field")))
+      .andExpect(jsonPath("fieldErrors[0]", hasKey("message")))
+      .andExpect(jsonPath("fieldErrors[1].*", hasSize(2)))
+      .andExpect(jsonPath("fieldErrors[1]", hasKey("field")))
+      .andExpect(jsonPath("fieldErrors[1]", hasKey("message")))
+      .andExpect(jsonPath("fieldErrors[2].*", hasSize(2)))
+      .andExpect(jsonPath("fieldErrors[2]", hasKey("field")))
+      .andExpect(jsonPath("fieldErrors[2]", hasKey("message")))
+      .andExpect(jsonPath("fieldErrors[3].*", hasSize(2)))
+      .andExpect(jsonPath("fieldErrors[3]", hasKey("field")))
+      .andExpect(jsonPath("fieldErrors[3]", hasKey("message")))
+      .andExpect(jsonPath("fieldErrors[4].*", hasSize(2)))
+      .andExpect(jsonPath("fieldErrors[4]", hasKey("field")))
+      .andExpect(jsonPath("fieldErrors[4]", hasKey("message")))
+      .andExpect(jsonPath("fieldErrors[5].*", hasSize(2)))
+      .andExpect(jsonPath("fieldErrors[5]", hasKey("field")))
+      .andExpect(jsonPath("fieldErrors[5]", hasKey("message")))
+      .andExpect(jsonPath("fieldErrors[6].*", hasSize(2)))
+      .andExpect(jsonPath("fieldErrors[6]", hasKey("field")))
+      .andExpect(jsonPath("fieldErrors[6]", hasKey("message")))
+      .andExpect(jsonPath("fieldErrors[7].*", hasSize(2)))
+      .andExpect(jsonPath("fieldErrors[7]", hasKey("field")))
+      .andExpect(jsonPath("fieldErrors[7]", hasKey("message")));
   }
 
   @Test

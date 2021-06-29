@@ -1,4 +1,4 @@
-package br.com.zupacademy.sergio.casadocodigo;
+package br.com.zupacademy.sergio.casadocodigo.controller;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,6 +7,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.hasKey;
+import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -162,7 +164,17 @@ public class AuthorControllerTests {
       .andExpect(jsonPath("globalErrors").isArray())
       .andExpect(jsonPath("globalErrors").isEmpty())
       .andExpect(jsonPath("fieldErrors").isArray())
-      .andExpect(jsonPath("fieldErrors").isNotEmpty());
+      .andExpect(jsonPath("fieldErrors").isNotEmpty())
+      .andExpect(jsonPath("fieldErrors", hasSize(3)))
+      .andExpect(jsonPath("fieldErrors[0].*", hasSize(2)))
+      .andExpect(jsonPath("fieldErrors[0]", hasKey("field")))
+      .andExpect(jsonPath("fieldErrors[0]", hasKey("message")))
+      .andExpect(jsonPath("fieldErrors[1].*", hasSize(2)))
+      .andExpect(jsonPath("fieldErrors[1]", hasKey("field")))
+      .andExpect(jsonPath("fieldErrors[1]", hasKey("message")))
+      .andExpect(jsonPath("fieldErrors[2].*", hasSize(2)))
+      .andExpect(jsonPath("fieldErrors[2]", hasKey("field")))
+      .andExpect(jsonPath("fieldErrors[2]", hasKey("message")));
   }
 
 

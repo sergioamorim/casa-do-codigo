@@ -56,7 +56,11 @@ public class Book {
   }
 
   @Deprecated
-  public Book() { } // jpa
+  protected Book() { } // jpa
+
+  public Long getId() {
+    return this.id;
+  }
 
   public String getTitle() {
     return this.title;

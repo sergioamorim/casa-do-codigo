@@ -12,7 +12,7 @@ public class Category {
   private String name;
 
   @Deprecated  // jpa
-  public Category() {
+  protected Category() {
   }
 
   public Category(String name) {
