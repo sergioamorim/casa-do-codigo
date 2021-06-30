@@ -19,8 +19,10 @@ public class ForeignKeyExistsValidator implements ConstraintValidator<ForeignKey
   }
 
   @Override
-  public boolean isValid(Object object, ConstraintValidatorContext constraintValidatorContext) {
-    return this.query(object).getResultList().size() > 0;
+  public boolean isValid(
+    Object object, ConstraintValidatorContext constraintValidatorContext
+  ) {
+    return !this.query(object).getResultList().isEmpty();
   }
 
   private Query query(Object object) {

@@ -19,7 +19,11 @@ public class BookCreateController {
   private final AuthorRepository authorRepository;
 
   @Autowired
-  public BookCreateController(BookRepository bookRepository, CategoryRepository categoryRepository, AuthorRepository authorRepository) {
+  public BookCreateController(
+    BookRepository bookRepository,
+    CategoryRepository categoryRepository,
+    AuthorRepository authorRepository
+  ) {
     this.bookRepository = bookRepository;
     this.categoryRepository = categoryRepository;
     this.authorRepository = authorRepository;

@@ -29,11 +29,7 @@ public class AuthorRequest {
   }
 
   public Author asAuthor() {
-    return new Author(this.name, this.getEmail(), this.description);
-  }
-
-  public String getEmail() {
-    return this.email;
+    return new Author(this.name, this.email, this.description);
   }
 
 }
