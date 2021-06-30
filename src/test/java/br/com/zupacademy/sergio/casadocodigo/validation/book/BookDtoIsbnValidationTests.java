@@ -1,6 +1,6 @@
 package br.com.zupacademy.sergio.casadocodigo.validation.book;
 
-import br.com.zupacademy.sergio.casadocodigo.model.dto.BookDto;
+import br.com.zupacademy.sergio.casadocodigo.model.dto.book.BookDto;
 import br.com.zupacademy.sergio.casadocodigo.repository.AuthorRepository;
 import br.com.zupacademy.sergio.casadocodigo.repository.BookRepository;
 import br.com.zupacademy.sergio.casadocodigo.repository.CategoryRepository;
@@ -34,7 +34,7 @@ public class BookDtoIsbnValidationTests {
 
   @BeforeAll
   static void setUp(@Autowired DataSource dataSource) throws SQLException {
-    ScriptUtils.executeSqlScript(dataSource.getConnection(), new ClassPathResource("book_dto_validation_tests.sql"));
+    ScriptUtils.executeSqlScript(dataSource.getConnection(), new ClassPathResource("book_tests.sql"));
   }
 
   @Test

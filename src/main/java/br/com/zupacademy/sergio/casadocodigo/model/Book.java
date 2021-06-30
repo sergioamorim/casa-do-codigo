@@ -55,8 +55,9 @@ public class Book {
     this.author = author;
   }
 
-  @Deprecated
-  protected Book() { } // jpa
+  @Deprecated  // jpa
+  protected Book() {
+  }
 
   public Long getId() {
     return this.id;
@@ -88,6 +89,10 @@ public class Book {
 
   public LocalDate getPostDate() {
     return this.postDate;
+  }
+
+  public Author getAuthor() {
+    return this.author;
   }
 
   public Long getCategoryId() {

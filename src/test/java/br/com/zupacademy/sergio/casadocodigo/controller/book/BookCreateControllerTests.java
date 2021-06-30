@@ -23,19 +23,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = BEFORE_CLASS)
-public class BookControllerPostTests {
+public class BookCreateControllerTests {
 
   private final MockMvc mockMvc;
   private final String urlTemplate = "/books";
 
   @Autowired
-  public BookControllerPostTests(MockMvc mockMvc) {
+  public BookCreateControllerTests(MockMvc mockMvc) {
     this.mockMvc = mockMvc;
   }
 
   @BeforeAll
   static void setUp(@Autowired DataSource dataSource) throws SQLException {
-    ScriptUtils.executeSqlScript(dataSource.getConnection(), new ClassPathResource("book_dto_validation_tests.sql"));
+    ScriptUtils.executeSqlScript(dataSource.getConnection(), new ClassPathResource("book_tests.sql"));
   }
 
   @Test

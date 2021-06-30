@@ -1,7 +1,7 @@
 package br.com.zupacademy.sergio.casadocodigo.controller;
 
-import br.com.zupacademy.sergio.casadocodigo.model.dto.AuthorDto;
-import br.com.zupacademy.sergio.casadocodigo.model.dto.AuthorRequest;
+import br.com.zupacademy.sergio.casadocodigo.model.dto.author.AuthorDto;
+import br.com.zupacademy.sergio.casadocodigo.model.dto.author.AuthorRequest;
 import br.com.zupacademy.sergio.casadocodigo.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

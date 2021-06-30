@@ -1,6 +1,6 @@
 package br.com.zupacademy.sergio.casadocodigo.validation.book;
 
-import br.com.zupacademy.sergio.casadocodigo.model.dto.BookDto;
+import br.com.zupacademy.sergio.casadocodigo.model.dto.book.BookDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -31,7 +31,7 @@ public class BookDtoPriceValidationTests {
 
   @BeforeAll
   static void setUp(@Autowired DataSource dataSource) throws SQLException {
-    ScriptUtils.executeSqlScript(dataSource.getConnection(), new ClassPathResource("book_dto_validation_tests.sql"));
+    ScriptUtils.executeSqlScript(dataSource.getConnection(), new ClassPathResource("book_tests.sql"));
   }
 
   @Test
