@@ -23,11 +23,19 @@ public class State {
   protected State() {
   }
 
+  public Long getCountryId() {
+    return this.country.getId();
+  }
+
   public String getName() {
     return this.name;
   }
 
-  public Long getCountryId() {
-    return this.country.getId();
+  public Long getId() {
+    return this.id;
+  }
+
+  public boolean isFromCountryId(Long countryId) {
+    return this.getCountryId().equals(countryId);
   }
 }
